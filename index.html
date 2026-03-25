@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StyleVault — London</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --white: #faf9f7;
+    --cream: #f2efe9;
+    --stone: #e8e4dc;
+    --muted: #9a9590;
+    --border: #ddd9d2;
+    --accent: #c4a882;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announce {
+    background: var(--black);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 10px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .announce span { color: var(--accent); margin: 0 6px; }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--black);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-icon {
+    cursor: pointer;
+    color: var(--black);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-icon svg { width: 18px; height: 18px; stroke: var(--black); fill: none; stroke-width: 1.2; }
+
+  .cart-count {
+    background: var(--black);
+    color: var(--white);
+    font-size: 9px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 108px);
+  }
+
+  .hero-left {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: 'SS25';
+    position: absolute;
+    top: 48px; left: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(0,0,0,0.04);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+  }
+
+  .hero-season {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #5a5650;
+    max-width: 320px;
+    margin-bottom: 40px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 400;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 6px;
+    width: fit-content;
+    transition: gap 0.3s ease;
+  }
+
+  .hero-cta:hover { gap: 24px; }
+  .hero-cta svg { width: 20px; height: 12px; stroke: var(--black); fill: none; stroke-width: 1.2; }
+
+  .hero-right {
+    background: var(--stone);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #e8e4dc 0%, #d4cfc6 40%, #c8c3b8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-img-figure {
+    width: 180px;
+    opacity: 0.25;
+  }
+
+  .hero-img-figure svg { width: 100%; }
+
+  .hero-tag {
+    position: absolute;
+    bottom: 48px; right: 48px;
+    background: var(--white);
+    padding: 16px 20px;
+    font-size: 11px;
+  }
+
+  .hero-tag-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .hero-tag-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .hero-tag-price {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-item {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 32px;
+    flex-shrink: 0;
+  }
+
+  .marquee-dot {
+    color: var(--accent);
+    margin: 0 -16px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── COLLECTIONS ── */
+  .section {
+    padding: 100px 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 52px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  .section-title em { font-style: italic; }
+
+  .section-link {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .section-link:hover { color: var(--black); border-color: var(--black); }
+
+  /* ── PRODUCT GRID ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .product-card {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-img {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-img-bg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-card:hover .product-img-bg { transform: scale(1.04); }
+
+  .p1 { background: #e4e0d8; }
+  .p2 { background: #d8d4cc; }
+  .p3 { background: #e0ddd6; }
+  .p4 { background: #ccc8c0; }
+  .p5 { background: #dedad2; }
+  .p6 { background: #d4d0c8; }
+  .p7 { background: #e8e4dc; }
+  .p8 { background: #d0ccc4; }
+
+  .product-figure {
+    width: 60%;
+    opacity: 0.3;
+  }
+
+  .product-wishlist {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 32px; height: 32px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+  }
+
+  .product-wishlist svg { width: 14px; height: 14px; stroke: var(--black); fill: none; stroke-width: 1.2; }
+  .product-card:hover .product-wishlist { opacity: 1; }
+
+  .product-info {
+    padding: 16px 0 24px;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .product-material {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .product-price {
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .product-price .original {
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-right: 8px;
+    font-size: 12px;
+  }
+
+  .product-colors {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .color-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* ── EDITORIAL BANNER ── */
+  .editorial {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+    margin: 0 48px;
+    border: 1px solid var(--border);
+  }
+
+  .editorial-img {
+    background: #1a1915;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .editorial-figure {
+    width: 200px;
+    opacity: 0.15;
+  }
+
+  .editorial-content {
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--cream);
+  }
+
+  .editorial-issue {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .editorial-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .editorial-title em { font-style: italic; }
+
+  .editorial-body {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #5a5650;
+    margin-bottom: 40px;
+    max-width: 380px;
+  }
+
+  /* ── CATEGORIES ── */
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    padding: 0 48px;
+    margin-bottom: 2px;
+  }
+
+  .cat-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/5;
+  }
+
+  .cat-bg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cat-card:hover .cat-bg { transform: scale(1.04); }
+
+  .cat1 { background: #2a2620; }
+  .cat2 { background: #3a3530; }
+  .cat3 { background: #1e1c18; }
+
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 32px;
+  }
+
+  .cat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 8px;
+  }
+
+  .cat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .cat-cta {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 4px;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .cat-cta:hover { color: var(--white); border-color: var(--white); }
+
+  /* ── SERVICES ── */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 100px 0 0;
+  }
+
+  .service-item {
+    padding: 48px 40px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .service-item:last-child { border-right: none; }
+
+  .service-icon svg { width: 24px; height: 24px; stroke: var(--black); fill: none; stroke-width: 1; }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    padding: 120px 48px;
+    text-align: center;
+    background: var(--cream);
+  }
+
+  .newsletter-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .newsletter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .newsletter-title em { font-style: italic; }
+
+  .newsletter-sub {
+    font-size: 13px;
+    color: #5a5650;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .newsletter-form {
+    display: flex;
+    max-width: 440px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--black);
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    font-weight: 300;
+  }
+
+  .newsletter-input::placeholder { color: var(--muted); }
+
+  .newsletter-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 400;
+    padding: 12px 0 12px 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.5);
+    padding: 80px 48px 40px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+
+  .footer-brand .logo {
+    position: static;
+    transform: none;
+    color: var(--white);
+    display: block;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  .footer-brand p {
+    font-size: 12px;
+    line-height: 1.8;
+    max-width: 240px;
+  }
+
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col li {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .footer-col a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: rgba(255,255,255,0.9); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+  }
+
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-season { animation: fadeUp 0.8s ease 0.1s both; }
+  .hero-title { animation: fadeUp 0.8s ease 0.2s both; }
+  .hero-desc { animation: fadeUp 0.8s ease 0.3s both; }
+  .hero-cta { animation: fadeUp 0.8s ease 0.4s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 400px; }
+    .hero-left { padding: 60px 32px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .section { padding: 60px 24px; }
+    .editorial { grid-template-columns: 1fr; margin: 0 24px; }
+    .categories { grid-template-columns: 1fr; padding: 0 24px; }
+    .services { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">
+  Complimentary delivery on orders over £150
+  <span>·</span>
+  New arrivals: Spring / Summer 2025
+  <span>·</span>
+  Free returns within 30 days
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#">Women</a></li>
+    <li><a href="#">Men</a></li>
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Editorial</a></li>
+  </ul>
+
+  <a href="#" class="logo">StyleVault</a>
+
+  <div class="nav-right">
+    <a href="#" class="nav-icon">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+    </a>
+    <a href="#" class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count">2</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-season">Spring / Summer 2025 — New Collection</div>
+    <h1 class="hero-title">
+      Quiet<br>
+      <em>Luxury,</em><br>
+      Refined.
+    </h1>
+    <p class="hero-desc">
+      Pieces built for longevity. Considered fabrics, restrained silhouettes, and the kind of quality that improves with time.
+    </p>
+    <a href="#" class="hero-cta">
+      Explore the collection
+      <svg viewBox="0 0 24 12"><path d="M0 6h22M17 1l5 5-5 5"/></svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <div class="hero-img-figure">
+        <svg viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="90" cy="40" rx="28" ry="32" stroke="#0d0d0d" stroke-width="1"/>
+          <path d="M62 72 C40 80 28 100 30 160 L40 280 L80 280 L90 200 L100 280 L140 280 L150 160 C152 100 140 80 118 72 Z" stroke="#0d0d0d" stroke-width="1" fill="none"/>
+          <path d="M62 72 L30 100" stroke="#0d0d0d" stroke-width="1"/>
+          <path d="M118 72 L150 100" stroke="#0d0d0d" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-tag">
+      <div class="hero-tag-label">Featured piece</div>
+      <div class="hero-tag-name">The Aldgate Coat</div>
+      <div class="hero-tag-price">£485</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">New Arrivals</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Spring / Summer 2025</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Sustainable Fabrics</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Made in England</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Free Returns</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Members — Early Access</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">New Arrivals</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Spring / Summer 2025</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Sustainable Fabrics</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Made in England</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Free Returns</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Members — Early Access</span><span class="marquee-item marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- NEW IN -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Just arrived</div>
+      <h2 class="section-title">New <em>In</em></h2>
+    </div>
+    <a href="#" class="section-link">View all →</a>
+  </div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg p1">
+          <div class="product-figure">
+            <svg viewBox="0 0 120 200" fill="none"><path d="M40 10 C30 20 20 40 20 80 L22 180 L50 180 L60 120 L70 180 L98 180 L100 80 C100 40 90 20 80 10 Z" stroke="#0d0d0d" stroke-width="0.8"/><ellipse cx="60" cy="8" rx="18" ry="10" stroke="#0d0d0d" stroke-width="0.8"/></svg>
+          </div>
+        </div>
+        <div class="product-wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">The Aldgate Coat</div>
+        <div class="product-material">Wool blend · Camel</div>
+        <div class="product-price">£485</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#c4a882;"></div>
+          <div class="color-dot" style="background:#2a2620;"></div>
+          <div class="color-dot" style="background:#8a8078;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg p2">
+          <div class="product-figure">
+            <svg viewBox="0 0 120 200" fill="none"><rect x="25" y="5" width="70" height="90" rx="2" stroke="#0d0d0d" stroke-width="0.8"/><path d="M25 95 L20 180 L50 180 L60 130 L70 180 L100 180 L95 95 Z" stroke="#0d0d0d" stroke-width="0.8"/></svg>
+          </div>
+        </div>
+        <div class="product-wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Brompton Blazer</div>
+        <div class="product-material">Italian linen · Chalk</div>
+        <div class="product-price">£320</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#f2efe9;border:1px solid #ddd;"></div>
+          <div class="color-dot" style="background:#4a4640;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg p3">
+          <div class="product-figure">
+            <svg viewBox="0 0 120 200" fill="none"><path d="M30 5 L90 5 L95 80 L90 180 L30 180 L25 80 Z" stroke="#0d0d0d" stroke-width="0.8"/><line x1="30" y1="60" x2="90" y2="60" stroke="#0d0d0d" stroke-width="0.8"/></svg>
+          </div>
+        </div>
+        <div class="product-wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Mayfair Trousers</div>
+        <div class="product-material">Wool crêpe · Stone</div>
+        <div class="product-price"><span class="original">£195</span>£155</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#c8c3b8;"></div>
+          <div class="color-dot" style="background:#1a1915;"></div>
+          <div class="color-dot" style="background:#8b7355;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg p4">
+          <div class="product-figure">
+            <svg viewBox="0 0 120 200" fill="none"><ellipse cx="60" cy="8" rx="18" ry="10" stroke="#0d0d0d" stroke-width="0.8"/><path d="M42 18 C30 28 28 50 30 100 L32 180 L55 180 L60 140 L65 180 L88 180 L90 100 C92 50 90 28 78 18 Z" stroke="#0d0d0d" stroke-width="0.8"/></svg>
+          </div>
+        </div>
+        <div class="product-wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Kensington Knit</div>
+        <div class="product-material">Merino wool · Oatmeal</div>
+        <div class="product-price">£175</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#e8e0d0;border:1px solid #ddd;"></div>
+          <div class="color-dot" style="background:#6b5a48;"></div>
+          <div class="color-dot" style="background:#3a3530;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDITORIAL BANNER -->
+<div class="editorial">
+  <div class="editorial-img">
+    <div class="editorial-figure">
+      <svg viewBox="0 0 200 360" fill="none"><ellipse cx="100" cy="45" rx="32" ry="36" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><path d="M68 81 C44 92 32 120 34 190 L38 330 L85 330 L100 240 L115 330 L162 330 L166 190 C168 120 156 92 132 81 Z" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><path d="M68 81 L34 120" stroke="rgba(255,255,255,0.3)" stroke-width="1"/><path d="M132 81 L166 120" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg>
+    </div>
+  </div>
+  <div class="editorial-content">
+    <div class="editorial-issue">Editorial · Issue No. 04</div>
+    <h2 class="editorial-title">The Art of<br><em>Dressing</em><br>with Less</h2>
+    <p class="editorial-body">
+      A wardrobe should not shout. The most considered dressers understand restraint — that a single well-made piece carries more weight than a dozen passing trends. We explore the case for buying less, but better.
+    </p>
+    <a href="#" class="hero-cta">
+      Read the feature
+      <svg viewBox="0 0 24 12"><path d="M0 6h22M17 1l5 5-5 5"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="categories" style="margin-top:2px;">
+  <div class="cat-card">
+    <div class="cat-bg cat1">
+      <svg width="80" height="160" viewBox="0 0 80 160" fill="none" opacity="0.15"><ellipse cx="40" cy="18" rx="14" ry="16" stroke="white" stroke-width="0.8"/><path d="M26 34 C18 40 14 55 15 85 L17 145 L35 145 L40 110 L45 145 L63 145 L65 85 C66 55 62 40 54 34 Z" stroke="white" stroke-width="0.8"/></svg>
+    </div>
+    <div class="cat-overlay">
+      <div class="cat-label">Shop category</div>
+      <div class="cat-name">Women's</div>
+      <a href="#" class="cat-cta">Explore →</a>
+    </div>
+  </div>
+  <div class="cat-card">
+    <div class="cat-bg cat2">
+      <svg width="80" height="160" viewBox="0 0 80 160" fill="none" opacity="0.15"><ellipse cx="40" cy="16" rx="13" ry="14" stroke="white" stroke-width="0.8"/><path d="M27 30 C18 36 14 52 16 82 L18 145 L36 145 L40 108 L44 145 L62 145 L64 82 C66 52 62 36 53 30 Z" stroke="white" stroke-width="0.8"/><path d="M27 30 L16 48" stroke="white" stroke-width="0.8"/><path d="M53 30 L64 48" stroke="white" stroke-width="0.8"/></svg>
+    </div>
+    <div class="cat-overlay">
+      <div class="cat-label">Shop category</div>
+      <div class="cat-name">Men's</div>
+      <a href="#" class="cat-cta">Explore →</a>
+    </div>
+  </div>
+  <div class="cat-card">
+    <div class="cat-bg cat3">
+      <svg width="100" height="80" viewBox="0 0 100 80" fill="none" opacity="0.15"><rect x="10" y="20" width="80" height="50" rx="2" stroke="white" stroke-width="0.8"/><path d="M30 20 L30 12 C30 8 35 5 40 5 L60 5 C65 5 70 8 70 12 L70 20" stroke="white" stroke-width="0.8"/></svg>
+    </div>
+    <div class="cat-overlay">
+      <div class="cat-label">Shop category</div>
+      <div class="cat-name">Accessories</div>
+      <a href="#" class="cat-cta">Explore →</a>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="services">
+  <div class="service-item">
+    <div class="service-icon">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+    <div class="service-title">Free Delivery</div>
+    <div class="service-desc">Complimentary on all UK orders over £150. Next-day available at checkout.</div>
+  </div>
+  <div class="service-item">
+    <div class="service-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div class="service-title">Easy Returns</div>
+    <div class="service-desc">30-day returns on all full-price items. Free collection from your door.</div>
+  </div>
+  <div class="service-item">
+    <div class="service-icon">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="service-title">Styling Service</div>
+    <div class="service-desc">Book a complimentary personal styling session in our London flagship.</div>
+  </div>
+  <div class="service-item">
+    <div class="service-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="service-title">Authenticated</div>
+    <div class="service-desc">Every piece verified for quality and provenance before it reaches you.</div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div class="newsletter-eyebrow">Stay informed</div>
+  <h2 class="newsletter-title">Early access.<br><em>Always.</em></h2>
+  <p class="newsletter-sub">Members receive new arrivals 48 hours before the public,<br>alongside exclusive edits and invitations to private events.</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="Your email address">
+    <button class="newsletter-btn">Join →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">StyleVault</a>
+      <p>Premium fashion for those who value quality over quantity. Founded in London, 2019.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">New In</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Flagship Store</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Delivery & Returns</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Care Guide</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 StyleVault UK Ltd. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
