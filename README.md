@@ -31,8 +31,3 @@ This storefront is the site that was protected by the infrastructure rebuild —
 The full infrastructure build — architecture, step-by-step ClickOps guide, and all 6 debugging issues documented:
 
 👉 [AWS Auto Scaling + Load Balancer — High Availability Project]
-
-
----
-
-Just update the repo link on the last line once you know what you named the infrastructure repo. Want me to create it as a file?
